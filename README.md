@@ -1,4 +1,6 @@
-le_saviez_vous
+Le-Saviez-Vous
 ==============
 
-A little software to see the "ligth on" article of wikipedia each day
+Un programme qui vous permet d'afficher l'encadré "Lumière sur" de Wikipedia. Vous pouvez par exemple lancer ce programme au démarrage de votre PC.
+
+Fait par Mythseur.
