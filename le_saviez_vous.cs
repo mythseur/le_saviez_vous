@@ -10,7 +10,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Net;
 
-namespace WindowsFormsApplication1
+namespace LeSaviezVous
 {
     public partial class le_saviez_vous : Form
     {

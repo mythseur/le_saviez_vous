@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WindowsFormsApplication1.Properties {
+namespace LeSaviezVous.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

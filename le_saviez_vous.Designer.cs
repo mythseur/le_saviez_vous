@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-namespace WindowsFormsApplication1
+namespace LeSaviezVous
 {
     partial class le_saviez_vous
     {
