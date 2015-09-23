@@ -71,6 +71,15 @@ namespace WindowsFormsApplication1
             texte = extraireArticle(texte);
             url = obtenirURL(texte);
             richTextBox1.Text = formatagetexte(texte);
+            richTextBox1.Font = Properties.Settings.Default.Font;
+            if(Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run").GetValue("le_saviez_vous") == null)
+            {
+                button4.Text = "Activer le démarrage";
+            }
+            else
+            {
+                button4.Text = "Désactiver le démarrage";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,18 +95,30 @@ namespace WindowsFormsApplication1
             Application.Exit();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+                richTextBox1.Font = fontDialog1.Font;
+                Properties.Settings.Default.Font = fontDialog1.Font;
+                Properties.Settings.Default.Save();   
+            }
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            if (fontDialog1.ShowDialog() != DialogResult.Cancel) ;
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (key.GetValue("le_saviez_vous") == null)
             {
-                richTextBox1.Font = fontDialog1.Font;
+                key.SetValue("Le_saviez_vous", Application.ExecutablePath);
+                button4.Text = "Désactiver le démarrage";
             }
-
+            else
+            {
+                key.DeleteValue("le_saviez_vous");
+                button4.Text = ("Activer le démarrage");
+            }
         }
     }
 }
