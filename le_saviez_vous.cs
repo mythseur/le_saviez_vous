@@ -26,6 +26,15 @@ namespace LeSaviezVous
 
             return m.ToString();
         }
+        private string extraireTitre(string src)
+        {
+            byte[] bytes = Encoding.Default.GetBytes(src);
+            src = Encoding.UTF8.GetString(bytes);
+
+            Regex r = new Regex("<h1 id=\"firstHeading\" class=\"firstHeading\" lang=\"fr\">.*</h1>");
+            Match m = r.Match(src);
+            return m.ToString();
+        }
         private string formatagetexte(string t)
         {
             //Retrait Balises HTML
@@ -70,7 +79,9 @@ namespace LeSaviezVous
             String texte = w.DownloadString("http://fr.wikipedia.org/wiki/Wikip%C3%A9dia:Accueil_principal");
             texte = extraireArticle(texte);
             url = obtenirURL(texte);
-            richTextBox1.Text = formatagetexte(texte);
+            String texte2 = w.DownloadString(url);
+            texte2 = extraireTitre(texte2);
+            richTextBox1.Text = formatagetexte(texte2)+"\n\n"+formatagetexte(texte);
             richTextBox1.Font = Properties.Settings.Default.Font;
             if(Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Run").GetValue("le_saviez_vous") == null)
             {
